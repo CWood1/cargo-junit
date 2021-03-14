@@ -55,10 +55,15 @@ fn main() {
         }
     }
 
-    let mut f =
-        fs::File::create(format!("{}", name)).expect(&format!("could not create file: {}", name));
-
-    format_document(&d, &mut f)
-        .ok()
-        .expect(&format!("unable to output XML to {}", name));
+    if name == "" {
+        format_document(&d, &mut std::io::stdout())
+            .ok()
+            .expect(&format!("unable to output XML to {}", name));
+    } else {
+        let mut f =
+            fs::File::create(format!("{}", name)).expect(&format!("could not create file: {}", name));
+            format_document(&d, &mut f)
+                .ok()
+                .expect(&format!("unable to output XML to {}", name));
+    }
 }

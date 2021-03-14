@@ -10,6 +10,7 @@ pub fn get_args<'a>() -> clap::ArgMatches<'a> {
         .short("n")
         .long("name")
         .value_name("NAME")
+        .default_value("")
         .help("set the junit suite name. This is also the file name");
 
 
